@@ -13,7 +13,6 @@ import {
 import { useHistory } from 'react-router-dom';
 import { useFetchContext } from './fetchHelpers';
 import { INameNamespaceRef, IProviderObject, ISrcDestRefs } from './types';
-import { InventoryTree } from './types/tree.types';
 import { UnknownResult } from '@app/common/types';
 
 // TODO what about usePaginatedQuery, useInfiniteQuery?
@@ -134,17 +133,6 @@ export const sortIndexedDataByName = <TItem extends { name: string }, TIndexed>(
 export const sortKubeListByName = <T>(result: IKubeList<T>) => ({
   ...result,
   items: sortByName(result.items || []),
-});
-
-export const sortTreeItemsByName = <T extends InventoryTree>(tree: T): T => ({
-  ...tree,
-  children:
-    tree.children &&
-    (tree.children as T[]).map(sortTreeItemsByName).sort((a?: T, b?: T) => {
-      if (!a || !a.object) return -1;
-      if (!b || !b.object) return 1;
-      return a.object.name < b.object.name ? -1 : 1;
-    }),
 });
 
 export const nameAndNamespace = (
