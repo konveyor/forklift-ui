@@ -11,7 +11,7 @@ import {
   LocalStorageContextProvider,
   NetworkContextProvider,
 } from '@app/common/context';
-import { unBlockRoute } from '@app/common/constants';
+import { noop } from '@app/common/constants';
 
 const queryCache = new QueryCache();
 const queryClient = new QueryClient({ queryCache });
@@ -21,7 +21,7 @@ const App: React.FunctionComponent = () => (
     <PollingContextProvider>
       <LocalStorageContextProvider>
         <NetworkContextProvider>
-          <Router getUserConfirmation={unBlockRoute}>
+          <Router getUserConfirmation={noop}>
             <AppLayout>
               <AppRoutes />
             </AppLayout>

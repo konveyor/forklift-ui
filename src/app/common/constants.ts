@@ -141,4 +141,4 @@ export const usernameSchema = yup
   });
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export const unBlockRoute = () => {};
+export const noop = () => {};
